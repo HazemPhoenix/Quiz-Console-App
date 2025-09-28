@@ -66,11 +66,24 @@ public class Question {
     }
 
     public boolean isCorrect(char option) {
-        return option == this.correctOption;
+        return Character.toLowerCase(option) == Character.toLowerCase(correctOption);
     }
 
     @Override
     public String toString() {
-        return "Question{" + "id=" + id + ", question='" + question + '\'' + ", options=" + options + ", correctOption=" + correctOption + '}';
+        StringBuilder sb = new StringBuilder();
+
+        sb.append(question).append("\n");
+
+        options.entrySet().stream()
+                .sorted(Map.Entry.comparingByKey())
+                .forEach(entry -> {
+                    sb.append(entry.getKey())
+                            .append(") ")
+                            .append(entry.getValue())
+                            .append("\n");
+                });
+
+        return sb.toString();
     }
 }
