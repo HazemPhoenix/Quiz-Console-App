@@ -1,5 +1,6 @@
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 
 public class QuestionService {
     private List<Question> questions;
@@ -44,4 +45,18 @@ public class QuestionService {
         return questions.size();
     }
 
+    public void play() {
+        Scanner sc = new Scanner(System.in);
+        int idx = 0, total = questionCount(), score = 0;
+        while(idx < total) {
+            Question currentQuestion = nextQuestion();
+            System.out.println(currentQuestion);
+            System.out.print("What is your answer? ");
+            char answer = sc.next().trim().charAt(0);
+            if(currentQuestion.isCorrect(answer)) score++;
+            idx++;
+        }
+        sc.close();
+        System.out.println("Total Score : " + score + " out of " + total);
+    }
 }

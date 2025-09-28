@@ -46,17 +46,6 @@ public class Main {
         questionService.addQuestion(q4);
         questionService.addQuestion(q5);
 
-        Scanner sc = new Scanner(System.in);
-        int idx = 0, total = questionService.questionCount(), score = 0;
-        while(idx < total) {
-            Question currentQuestion = questionService.nextQuestion();
-            System.out.println(currentQuestion);
-            System.out.print("What is your answer? ");
-            char answer = sc.next().trim().charAt(0);
-            if(currentQuestion.isCorrect(answer)) score++;
-            idx++;
-        }
-
-        System.out.println("Total Score : " + score + " out of " + total);
+        questionService.play();
     }
 }
